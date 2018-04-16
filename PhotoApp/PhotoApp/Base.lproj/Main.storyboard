@@ -34,7 +34,18 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zmh-Zq-nl0">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="zmh-Zq-nl0" secondAttribute="bottom" id="99l-Ou-Fik"/>
+                                            <constraint firstAttribute="trailing" secondItem="zmh-Zq-nl0" secondAttribute="trailing" id="CEv-ac-8ra"/>
+                                            <constraint firstItem="zmh-Zq-nl0" firstAttribute="leading" secondItem="t2f-5F-O32" secondAttribute="leading" id="Iv7-6o-hnc"/>
+                                            <constraint firstItem="zmh-Zq-nl0" firstAttribute="top" secondItem="t2f-5F-O32" secondAttribute="top" id="RzW-Pd-iqE"/>
+                                        </constraints>
                                         <size key="customSize" width="100" height="100"/>
                                     </collectionViewCell>
                                 </cells>
