@@ -13,15 +13,15 @@ class PhotoService: NSObject, PHPhotoLibraryChangeObserver {
     private let imageManager: PHCachingImageManager
     private var photos: Photos
 
-    init(photos: Photos) {
+    override init() {
         self.imageManager = PHCachingImageManager()
-        self.photos = photos
+        self.photos = Photos()
         super.init()
         PHPhotoLibrary.shared().register(self)
     }
 
-    deinit {
-        PHPhotoLibrary.shared().unregisterChangeObserver(self)
+    var count: Int {
+        return self.photos.photoAssets.count
     }
 
     func photoLibraryDidChange(_ changeInstance: PHChange) {
@@ -34,9 +34,12 @@ class PhotoService: NSObject, PHPhotoLibraryChangeObserver {
 
     func requestImage(at index: Int, _ completion: @escaping (UIImage?) -> (Void)) {
         imageManager.requestImage(for: photos.at(index),
-                                  targetSize: CGSize(width: 100, height: 100),
-                                  contentMode: .aspectFill,
+                                  targetSize: CGSize(width: ViewConfig.itemWidth, height: ViewConfig.itemHeight),
+                                  contentMode: PHImageContentMode.aspectFill,
                                   options: nil) { image, _ in completion(image) }
     }
 
+    deinit {
+        PHPhotoLibrary.shared().unregisterChangeObserver(self)
+    }
 }
