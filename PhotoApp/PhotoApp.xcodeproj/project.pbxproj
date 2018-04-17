@@ -14,6 +14,7 @@
 		EE4208D52085EBEF00B7EC17 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4208D42085EBEF00B7EC17 /* PhotoService.swift */; };
 		EE4208D72085EC1100B7EC17 /* ClassIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4208D62085EC1100B7EC17 /* ClassIterator.swift */; };
 		EE4208D92085EC3A00B7EC17 /* UpdateCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4208D82085EC3A00B7EC17 /* UpdateCollectionViewDelegate.swift */; };
+		EE5B73802086414200F89D83 /* CollectionView+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5B737F2086414200F89D83 /* CollectionView+Config.swift */; };
 		EED1C406207F31AD002C2C7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1C405207F31AD002C2C7B /* AppDelegate.swift */; };
 		EED1C408207F31AD002C2C7B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1C407207F31AD002C2C7B /* ViewController.swift */; };
 		EED1C40B207F31AD002C2C7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED1C409207F31AD002C2C7B /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 		EE4208D42085EBEF00B7EC17 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		EE4208D62085EC1100B7EC17 /* ClassIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassIterator.swift; sourceTree = "<group>"; };
 		EE4208D82085EC3A00B7EC17 /* UpdateCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		EE5B737F2086414200F89D83 /* CollectionView+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+Config.swift"; sourceTree = "<group>"; };
 		EED1C402207F31AD002C2C7B /* PhotoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED1C405207F31AD002C2C7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EED1C407207F31AD002C2C7B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,8 +55,8 @@
 			isa = PBXGroup;
 			children = (
 				EE4208DA2085EC5000B7EC17 /* Protocols */,
-				EE4208CA20849FA000B7EC17 /* Photos.swift */,
 				EE4208D42085EBEF00B7EC17 /* PhotoService.swift */,
+				EE4208CA20849FA000B7EC17 /* Photos.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -92,6 +94,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		EE5B7381208641E400F89D83 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				EE5B737F2086414200F89D83 /* CollectionView+Config.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		EED1C3F9207F31AD002C2C7B = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +127,7 @@
 				EE4208CD20849FB000B7EC17 /* View */,
 				EE4208CE20849FB500B7EC17 /* Protocols */,
 				EE4208D12085873700B7EC17 /* Extensions */,
+				EE5B7381208641E400F89D83 /* Constants */,
 				EED1C409207F31AD002C2C7B /* Main.storyboard */,
 				EED1C40C207F31AF002C2C7B /* Assets.xcassets */,
 				EED1C40E207F31AF002C2C7B /* LaunchScreen.storyboard */,
@@ -202,6 +213,7 @@
 				EED1C406207F31AD002C2C7B /* AppDelegate.swift in Sources */,
 				EE4208D02085872600B7EC17 /* UIColor+Extension.swift in Sources */,
 				EE4208CB20849FA000B7EC17 /* Photos.swift in Sources */,
+				EE5B73802086414200F89D83 /* CollectionView+Config.swift in Sources */,
 				EE4208C72084931700B7EC17 /* PhotoCell.swift in Sources */,
 				EE4208D72085EC1100B7EC17 /* ClassIterator.swift in Sources */,
 				EE4208D52085EBEF00B7EC17 /* PhotoService.swift in Sources */,
