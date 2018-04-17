@@ -11,6 +11,9 @@
 		EE4208C9208494DF00B7EC17 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4208C8208494DF00B7EC17 /* Reusable.swift */; };
 		EE4208CB20849FA000B7EC17 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4208CA20849FA000B7EC17 /* Photos.swift */; };
 		EE4208D02085872600B7EC17 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4208CF2085872600B7EC17 /* UIColor+Extension.swift */; };
+		EE4208D52085EBEF00B7EC17 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4208D42085EBEF00B7EC17 /* PhotoService.swift */; };
+		EE4208D72085EC1100B7EC17 /* ClassIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4208D62085EC1100B7EC17 /* ClassIterator.swift */; };
+		EE4208D92085EC3A00B7EC17 /* UpdateCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4208D82085EC3A00B7EC17 /* UpdateCollectionViewDelegate.swift */; };
 		EED1C406207F31AD002C2C7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1C405207F31AD002C2C7B /* AppDelegate.swift */; };
 		EED1C408207F31AD002C2C7B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1C407207F31AD002C2C7B /* ViewController.swift */; };
 		EED1C40B207F31AD002C2C7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED1C409207F31AD002C2C7B /* Main.storyboard */; };
@@ -23,6 +26,9 @@
 		EE4208C8208494DF00B7EC17 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		EE4208CA20849FA000B7EC17 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		EE4208CF2085872600B7EC17 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		EE4208D42085EBEF00B7EC17 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
+		EE4208D62085EC1100B7EC17 /* ClassIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassIterator.swift; sourceTree = "<group>"; };
+		EE4208D82085EC3A00B7EC17 /* UpdateCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		EED1C402207F31AD002C2C7B /* PhotoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED1C405207F31AD002C2C7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EED1C407207F31AD002C2C7B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,7 +52,9 @@
 		EE4208CC20849FAB00B7EC17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EE4208DA2085EC5000B7EC17 /* Protocols */,
 				EE4208CA20849FA000B7EC17 /* Photos.swift */,
+				EE4208D42085EBEF00B7EC17 /* PhotoService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -71,8 +79,17 @@
 			isa = PBXGroup;
 			children = (
 				EE4208CF2085872600B7EC17 /* UIColor+Extension.swift */,
+				EE4208D62085EC1100B7EC17 /* ClassIterator.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EE4208DA2085EC5000B7EC17 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EE4208D82085EC3A00B7EC17 /* UpdateCollectionViewDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		EED1C3F9207F31AD002C2C7B = {
@@ -179,12 +196,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE4208D92085EC3A00B7EC17 /* UpdateCollectionViewDelegate.swift in Sources */,
 				EE4208C9208494DF00B7EC17 /* Reusable.swift in Sources */,
 				EED1C408207F31AD002C2C7B /* ViewController.swift in Sources */,
 				EED1C406207F31AD002C2C7B /* AppDelegate.swift in Sources */,
 				EE4208D02085872600B7EC17 /* UIColor+Extension.swift in Sources */,
 				EE4208CB20849FA000B7EC17 /* Photos.swift in Sources */,
 				EE4208C72084931700B7EC17 /* PhotoCell.swift in Sources */,
+				EE4208D72085EC1100B7EC17 /* ClassIterator.swift in Sources */,
+				EE4208D52085EBEF00B7EC17 /* PhotoService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
