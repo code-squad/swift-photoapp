@@ -19,7 +19,7 @@ static var random: UIColor {
 
 ### 학습 내용
 >- **[Collection View 프로그래밍 방식]()**
->- **[Collection View와 TableView와 공통점 및 차이점]()**
+>- **[Collection View와 TableView와 공통점 및 차이점](https://github.com/undervineg/swift-photoapp/blob/photo-step3/md/CollectionView_and_TableView.md)**
 
 2018-04-13 (작업시간: 1일)
 
@@ -160,8 +160,8 @@ private func updateChangedItems(_ changes: PHFetchResultChangeDetails<PHAsset>) 
 ```
 
 ### 학습 내용
->- **[Photos 라이브러리의 구성]()**
->- **[PHImageContentMode와 UIImageView의 ContentMode의 차이]()**
+>- **[Photos 라이브러리의 구성](https://github.com/undervineg/swift-photoapp/blob/photo-step3/md/Photos_FrameWork.md)**
+>- **[PHImageContentMode와 UIImageView의 ContentMode의 차이](https://github.com/undervineg/swift-photoapp/blob/photo-step3/md/PHImageContentMode_ContentMode.md)**
 
 2018-04-17 (작업시간: 1일)
 
