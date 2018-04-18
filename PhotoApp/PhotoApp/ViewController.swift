@@ -16,16 +16,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             collectionView.delegate = self
         }
     }
-    private var photoService: PhotoService! {
-        didSet {
-            NotificationCenter.default.addObserver(self, selector: #selector(updateCollectionView(notification:)),
-                                                   name: .photoLibraryChanged, object: nil)
-        }
-    }
+    private var photoService: PhotoService!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.photoService = PhotoService()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCollectionView(notification:)),
+                                               name: .photoLibraryChanged, object: nil)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
