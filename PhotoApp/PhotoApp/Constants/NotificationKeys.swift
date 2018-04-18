@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+struct NotificationKeys {
+    static let photoChanges = "photoChanges"
+}
