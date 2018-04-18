@@ -18,7 +18,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     private var photoService: PhotoService! {
         didSet {
-            photoService.delegate = self
+            NotificationCenter.default.addObserver(self, selector: #selector(updateCollectionView(notification:)),
+                                                   name: .photoLibraryChanged, object: nil)
         }
     }
 
@@ -45,9 +46,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
 }
 
-extension ViewController: UpdateCollectionViewDelegate {
-    func updateCollectionView(_ changes: PHFetchResultChangeDetails<PHAsset>) {
-        changes.hasIncrementalChanges ? updateChangedItems(changes) : self.collectionView.reloadData()
+extension ViewController {
+    @objc func updateCollectionView(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let changes = userInfo[NotificationKeys.photoChanges] as? PHFetchResultChangeDetails<PHAsset> else { return }
+        DispatchQueue.main.async {
+            changes.hasIncrementalChanges ? self.updateChangedItems(changes) : self.collectionView.reloadData()
+        }
     }
 
     private func updateChangedItems(_ changes: PHFetchResultChangeDetails<PHAsset>) {

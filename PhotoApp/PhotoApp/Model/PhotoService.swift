@@ -9,7 +9,6 @@
 import Photos
 
 class PhotoService: NSObject, PHPhotoLibraryChangeObserver {
-    var delegate: UpdateCollectionViewDelegate?
     private let imageManager: PHCachingImageManager
     private var photos: Photos
 
@@ -27,9 +26,8 @@ class PhotoService: NSObject, PHPhotoLibraryChangeObserver {
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         guard let changes = changeInstance.changeDetails(for: self.photos.photoAssets) else { return }
         self.photos.updateAssets(with: changes.fetchResultAfterChanges)
-        DispatchQueue.main.async {
-            self.delegate?.updateCollectionView(changes)
-        }
+        NotificationCenter.default.post(name: .photoLibraryChanged, object: nil,
+                                        userInfo: [NotificationKeys.photoChanges: changes])
     }
 
     func requestImage(at index: Int, _ completion: @escaping (UIImage?) -> (Void)) {
