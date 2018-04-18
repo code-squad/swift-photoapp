@@ -55,16 +55,20 @@ extension ViewController {
     private func updateChangedItems(_ changes: PHFetchResultChangeDetails<PHAsset>) {
         self.collectionView.performBatchUpdates({
             if let insertedIndexes = changes.insertedIndexes, insertedIndexes.count > 0 {
-                self.collectionView.insertItems(at: insertedIndexes.compactMap { IndexPath(index: $0) })
+                self.collectionView.insertItems(at: insertedIndexes.compactMap { IndexPath(row: $0, section: 0) })
             }
             if let deletedIndexes = changes.removedIndexes, deletedIndexes.count > 0 {
-                self.collectionView.deleteItems(at: deletedIndexes.compactMap { IndexPath(index: $0) })
+                self.collectionView.deleteItems(at: deletedIndexes.compactMap { IndexPath(row: $0, section: 0) })
             }
             if let changedIndexes = changes.changedIndexes, changedIndexes.count > 0 {
-                self.collectionView.reloadItems(at: changedIndexes.compactMap { IndexPath(index: $0) })
+                self.collectionView.reloadItems(at: changedIndexes.compactMap { IndexPath(row: $0, section: 0) })
             }
-            changes.enumerateMoves { self.collectionView.moveItem(at: IndexPath(index: $0), to: IndexPath(index: $1)) }
-        })
+            if changes.hasMoves {
+                changes.enumerateMoves {
+                    self.collectionView.moveItem(at: IndexPath(row: $0, section: 0), to: IndexPath(row: $1, section: 0))
+                }
+            }
+        }, completion: nil)
     }
 
 }
