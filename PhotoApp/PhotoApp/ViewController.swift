@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import PhotosUI
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView! {
@@ -31,9 +32,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.id, for: indexPath) as! PhotoCell
-        photoService.requestImage(at: indexPath.item) { image in
+        photoService.requestImage(at: indexPath.item) { image, isLivePhoto  in
             cell.photoImageView.image = image
+            cell.liveBadgeImageView.image = isLivePhoto ? PHLivePhotoView.livePhotoBadgeImage(options: .overContent) : nil
         }
+        
         return cell
     }
 
