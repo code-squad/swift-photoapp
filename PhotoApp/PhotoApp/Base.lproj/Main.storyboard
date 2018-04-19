@@ -39,10 +39,15 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aKi-AZ-rie" userLabel="Live Badge Image View">
+                                                    <rect key="frame" x="25" y="0.0" width="25" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <size key="customSize" width="50" height="50"/>
                                         <connections>
+                                            <outlet property="liveBadgeImageView" destination="aKi-AZ-rie" id="qHV-ob-kei"/>
                                             <outlet property="photoImageView" destination="zmh-Zq-nl0" id="UJd-sa-yY0"/>
                                         </connections>
                                     </collectionViewCell>
@@ -58,14 +63,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cL1-zU-Z1I"/>
+                    <navigationItem key="navigationItem" id="cL1-zU-Z1I">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="LU4-MR-Mpw">
+                            <connections>
+                                <action selector="doneBarButton:" destination="Qhx-Of-LWi" id="KNs-5x-1vq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="YYH-OX-sIP" id="hi0-5j-pfk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="Qhx-Of-LWi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1270" y="-564"/>
+            <point key="canvasLocation" x="1269.5999999999999" y="-564.46776611694156"/>
         </scene>
         <!--Photos-->
         <scene sceneID="0vi-Jl-aUT">
