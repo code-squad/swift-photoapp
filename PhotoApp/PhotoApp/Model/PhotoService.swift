@@ -30,11 +30,11 @@ class PhotoService: NSObject, PHPhotoLibraryChangeObserver {
                                         userInfo: [NotificationKeys.photoChanges: changes])
     }
 
-    func requestImage(at index: Int, _ completion: @escaping (UIImage?) -> (Void)) {
+    func requestImage(at index: Int, _ completion: @escaping (UIImage?, Bool) -> (Void)) {
         imageManager.requestImage(for: photos.at(index),
                                   targetSize: CGSize(width: ViewConfig.itemWidth, height: ViewConfig.itemHeight),
                                   contentMode: PHImageContentMode.aspectFill,
-                                  options: nil) { image, _ in completion(image) }
+                                  options: nil) { image, _ in completion(image, self.photos.at(index).isLivePhoto) }
     }
 
     deinit {
