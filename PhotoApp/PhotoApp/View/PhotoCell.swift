@@ -19,4 +19,21 @@ class PhotoCell: UICollectionViewCell, Reusable {
             photoImageView.contentMode = .scaleAspectFill
         }
     }
+
+    @IBOutlet weak var liveBadgeImageView: UIImageView! {
+        didSet {
+            liveBadgeImageView.translatesAutoresizingMaskIntoConstraints = false
+            liveBadgeImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25).isActive = true
+            liveBadgeImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25).isActive = true
+            liveBadgeImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+            liveBadgeImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        }
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photoImageView.image = nil
+        liveBadgeImageView.image = nil
+    }
+
 }
