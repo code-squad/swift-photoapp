@@ -41,3 +41,9 @@ extension Photos {
         self.photoAssets = changedAssets
     }
 }
+
+extension PHAsset {
+    var isLivePhoto: Bool {
+        return self.mediaSubtypes.contains(.photoLive)
+    }
+}
