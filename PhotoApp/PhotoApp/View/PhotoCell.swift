@@ -9,6 +9,21 @@
 import UIKit
 
 class PhotoCell: UICollectionViewCell, Reusable {
+    var representedAssetIdentifier: String!
+    override var isSelected: Bool {
+        didSet {
+            selectedBackgroundView?.layer.borderWidth = 5
+            selectedBackgroundView?.layer.borderColor = isSelected ? UIColor.red.cgColor : UIColor.clear.cgColor
+        }
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        photoImageView.backgroundColor = UIColor.clear
+        selectedBackgroundView = UIView.init(frame: self.bounds)
+        self.addSubview(selectedBackgroundView!)
+    }
+
     @IBOutlet weak var photoImageView: UIImageView! {
         didSet {
             photoImageView.translatesAutoresizingMaskIntoConstraints = false
