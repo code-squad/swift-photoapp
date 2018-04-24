@@ -66,16 +66,16 @@
                     <navigationItem key="navigationItem" id="cL1-zU-Z1I">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="LU4-MR-Mpw">
                             <connections>
-                                <action selector="doneBarButton:" destination="Qhx-Of-LWi" id="KNs-5x-1vq"/>
+                                <action selector="isDone:" destination="BYZ-38-t0r" id="aoX-4I-hDi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="YYH-OX-sIP" id="hi0-5j-pfk"/>
+                        <outlet property="doneButton" destination="LU4-MR-Mpw" id="cT9-Nr-RTP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="Qhx-Of-LWi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1269.5999999999999" y="-564.46776611694156"/>
         </scene>
