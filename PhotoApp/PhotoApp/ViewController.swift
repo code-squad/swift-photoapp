@@ -11,6 +11,7 @@ import Photos
 import PhotosUI
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.dataSource = self
@@ -18,12 +19,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     private var photoService: PhotoService!
+    private var selectedItems: [PHAsset] = [] {
+        willSet {
+            doneButton.isEnabled = newValue.count > 2 ? true : false
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.photoService = PhotoService()
+        photoService = PhotoService()
         NotificationCenter.default.addObserver(self, selector: #selector(updateCollectionView(notification:)),
                                                name: .photoLibraryChanged, object: nil)
+        collectionView.allowsMultipleSelection = true
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -32,16 +39,56 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.id, for: indexPath) as! PhotoCell
+        cell.representedAssetIdentifier = photoService.at(indexPath.item).localIdentifier
         photoService.requestImage(at: indexPath.item) { image, isLivePhoto  in
             cell.photoImageView.image = image
             cell.liveBadgeImageView.image = isLivePhoto ? PHLivePhotoView.livePhotoBadgeImage(options: .overContent) : nil
         }
-        
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: ViewConfig.itemWidth, height: ViewConfig.itemHeight)
+        return ViewConfig.itemSize
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedItems.append(photoService.at(indexPath.item))
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let index = selectedItems.index(of: photoService.at(indexPath.item)) {
+            selectedItems.remove(at: index)
+        }
+    }
+
+    @IBAction func isDone(_ sender: UIBarButtonItem) {
+        let selectedImages = photoService.requestImages(from: selectedItems)
+        let videoMaker = try? VideoMaker(videoSize: ViewConfig.itemSize, playSeconds: 3)
+        videoMaker?.makeVideo(from: selectedImages) { videoUrl in
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoUrl)
+            }, completionHandler: { (isSaved, error) in
+                isSaved ? self.showOKAlert("3초 동영상이 추가되었습니다.") : nil
+            })
+        }
+    }
+
+    private func deselectAllSelectedItems() {
+        collectionView.indexPathsForSelectedItems?.forEach {
+            collectionView.deselectItem(at: $0, animated: true)
+            if let index = selectedItems.index(of: photoService.at($0.item)) {
+                selectedItems.remove(at: index)
+            }
+        }
+    }
+
+    private func showOKAlert(_ message: String) {
+        let alertController = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        let okButton = UIAlertAction.init(title: "확인", style: .default, handler: nil)
+        alertController.addAction(okButton)
+        self.present(alertController, animated: true) {
+            self.deselectAllSelectedItems()
+        }
     }
 
 }

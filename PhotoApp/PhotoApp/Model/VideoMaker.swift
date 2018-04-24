@@ -15,7 +15,7 @@ class VideoMaker {
     private let pixelBufferAdapter: AVAssetWriterInputPixelBufferAdaptor
     private let playSeconds: Int
     private var settings: [String: Any] = [:]
-    
+
     init(videoSize: CGSize, playSeconds: Int) throws {
         self.writer = try AVAssetWriter(url: VideoMaker.generateFilePath(), fileType: AVFileType.mov)
         self.settings = [
