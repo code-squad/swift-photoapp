@@ -16,6 +16,7 @@
 		EE5B73802086414200F89D83 /* CollectionView+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5B737F2086414200F89D83 /* CollectionView+Config.swift */; };
 		EE5CBC8B20872EAA00C63F2B /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5CBC8A20872EAA00C63F2B /* NotificationName.swift */; };
 		EE5CBC8D2087360B00C63F2B /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5CBC8C2087360B00C63F2B /* NotificationKeys.swift */; };
+		EE900651208B35DB00F9F4A4 /* VideoMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE900650208B35DB00F9F4A4 /* VideoMaker.swift */; };
 		EED1C406207F31AD002C2C7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1C405207F31AD002C2C7B /* AppDelegate.swift */; };
 		EED1C408207F31AD002C2C7B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1C407207F31AD002C2C7B /* ViewController.swift */; };
 		EED1C40B207F31AD002C2C7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED1C409207F31AD002C2C7B /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		EE5B737F2086414200F89D83 /* CollectionView+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+Config.swift"; sourceTree = "<group>"; };
 		EE5CBC8A20872EAA00C63F2B /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		EE5CBC8C2087360B00C63F2B /* NotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
+		EE900650208B35DB00F9F4A4 /* VideoMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMaker.swift; sourceTree = "<group>"; };
 		EED1C402207F31AD002C2C7B /* PhotoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED1C405207F31AD002C2C7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EED1C407207F31AD002C2C7B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				EE4208D42085EBEF00B7EC17 /* PhotoService.swift */,
+				EE900650208B35DB00F9F4A4 /* VideoMaker.swift */,
 				EE4208CA20849FA000B7EC17 /* Photos.swift */,
 			);
 			path = Model;
@@ -213,6 +216,7 @@
 				EE4208C72084931700B7EC17 /* PhotoCell.swift in Sources */,
 				EE4208D72085EC1100B7EC17 /* ClassIterator.swift in Sources */,
 				EE4208D52085EBEF00B7EC17 /* PhotoService.swift in Sources */,
+				EE900651208B35DB00F9F4A4 /* VideoMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
