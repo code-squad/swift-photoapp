@@ -9,6 +9,5 @@
 import UIKit
 
 struct ViewConfig {
-    static let itemWidth: CGFloat = 100
-    static let itemHeight: CGFloat = 100
+    static let itemSize: CGSize = CGSize(width: 100, height: 100)
 }
