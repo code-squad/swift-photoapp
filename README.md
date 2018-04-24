@@ -1,102 +1,168 @@
-# 진행 방법
+# Photo App
 
-- [사진 iOS 앱 요구사항](https://nextstep.camp/courses/-Kv6Po9QBOUw9ZzXzI5m/-KvWBIIMwwUa-Hnk4gYh/lessons)을 파악한다.
-- 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 코드 리뷰 요청을 한다.
-- 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
-- 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
+## CollectionView 생성
+<img src="img/photoapp_step1.png" width="50%"></img>
 
-# 코드 리뷰 과정
-> 저장소 브랜치에 자신의 github 아이디에 해당하는 브랜치가 존재해야 한다.
->
-> 자신의 github 아이디에 해당하는 브랜치가 있는지 확인한다.
+### CollectionView를 화면에 꽉 채우고, 40개 cell을 랜덤 색상으로 채움
+- 시뮬레이터: iPhone 8
 
-1. 자신의 github 아이디에 해당하는 브랜치가 없는 경우 브랜치 생성 요청 채널을 통해 브랜치 생성을 요청한다.
-프로젝트를 자신의 계정으로 fork한다. 저장소 우측 상단의 fork 버튼을 활용한다.
+### 랜덤 색상 적용 시
+- `drand48()` : 0~1 사이 범위 내에서 랜덤 숫자 생성
+- UIColor.init()의 RGB 값은 0~1 사이 값을 가지므로, 보통 색상 지정 시 실제 RGB 값을 255로 나눔.
+- 랜덤 색상 적용 시에는 0~1 사이의 랜덤 수를 생성하면 되므로, drand48()을 사용함
 
-2. fork한 프로젝트를 자신의 컴퓨터로 clone한다.
-```
-git clone https://github.com/{본인_아이디}/{저장소 아이디}
-ex) https://github.com/godrm/swift-photoapp
+```swift
+static var random: UIColor {
+	return UIColor.init(red: CGFloat(drand48()), green: CGFloat(drand48()), blue: CGFloat(drand48()), alpha: 1)
+}
 ```
 
-3. clone한 프로젝트 이동
-```
-cd {저장소 아이디}
-ex) cd swift-photoapp
-```
+### 학습 내용
+>- **[Collection View 프로그래밍 방식]()**
+>- **[Collection View와 TableView와 공통점 및 차이점](https://github.com/undervineg/swift-photoapp/blob/photo-step3/md/CollectionView_and_TableView.md)**
 
-4. 본인 아이디로 브랜치를 만들기 위한 checkout
-```
-git checkout -t origin/본인_아이디
-ex) git checkout -t origin/godrm
-```
+2018-04-13 (작업시간: 1일)
 
-5. 기능 구현을 위한 브랜치 생성 (연속번호를 붙여나간다)
-```
-git checkout -b 브랜치이름
-ex) git checkout -b photos-step1
-```
+<br/>
 
-6. commit
-```
-git status //확인
-git rm 파일명 //삭제된 파일
-git add 파일명(or * 모두) // 추가/변경 파일
-git commit -m "메세지" // 커밋
+## Photo 라이브러리 생성
+<img src="img/photoapp_step2.jpeg" width="40%"></img>
+
+### CollectionView 셀 크기 조정
+#### 컬렉션뷰 셀 크기 변경 (100x100)
+- [StoryBoard] 컬렉션 뷰의 셀 크기를 설정할 때는, 레이아웃의 ItemSize에 따라서 달라진다는 사실을 주의한다.
+- [Code] UICollectionViewDelegateFlowLayout를 채택한 후, 해당 메소드를 구현 (기본적으로 UICollectionViewDelegate, UICollectionViewDataSource 채택해야)
+
+```swift
+func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: ViewConfig.itemWidth, height: ViewConfig.itemHeight)
+}
 ```
 
-7. 본인 원격 저장소에 올리기
+#### Cell에 ImageView 추가 (100x100)
+- PhotoCell 커스텀 클래스 생성
+- UIImageView를 추가하여 제약사항 설정
+	- Frame: PhotoCell에 꽉 차도록 설정
+	- ContentMode: 꽉 채워 보여주기 위해 scaleToFill로 설정
+
+```swift
+class PhotoCell: UICollectionViewCell, Reusable {
+    @IBOutlet weak var photoImageView: UIImageView! {
+        didSet {
+            photoImageView.translatesAutoresizingMaskIntoConstraints = false
+            photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+            photoImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+            photoImageView.contentMode = .scaleAspectFill
+        }
+    }
+}
 ```
-git push --set-upstream origin 브랜치이름
-ex) git push --set-upstream origin photos-step1
+
+### 사진보관함에 있는 사진 이미지를 Cell에 표시
+#### Photos 라이브러리 사용하여 사진보관함의 사진 불러오기
+- 불러온 사진 데이터를 관리하는 Photos 클래스 작성 및 내부 사진들을 클래스 이름으로 접근하기 위해 Sequence를 채택
+- PHAsset의 fetchAssets()를 통해 사진보관함의 사진들을 PHFetchResult<PHAsset> 형태로 불러옴
+- option: 생성일(creationDate) 기준 내림차순(descending). 즉, 최신순으로 정렬
+
+```swift
+class Photos {
+    private(set) var photoAssets = PHFetchResult<PHAsset>()
+    ...
+    private func fetchAllPhotosFromLibrary() -> PHFetchResult<PHAsset> {
+        let options = PHFetchOptions()
+        options.sortDescriptors = [NSSortDescriptor.init(key: "creationDate", ascending: false)]
+        return PHAsset.fetchAssets(with: options)
+    }
+    ...
+}
 ```
 
-8. pull request
-	- pull request는 github 서비스에서 진행할 수 있다.
-	- pull request는 original 저장소의 브랜치(자신의 github 아이디)와 앞 단계에서 생성한 브랜치 이름을 기준으로 한다.
+#### PHCachingImageManager 클래스 사용하여 Cell에 이미지 표시
+- CollectionView의 특정 셀에 이미지를 표시하기 위해, 다운받은 photos 중 cell 위치와 동일한 PHAsset 데이터를 UIImage로 파싱하여 넘기는 함수 구현
+- PHCachingImageManager의 requestImage() 사용
+- 타깃 사이즈는 imageView 사이즈와 동일
+- contentMode는 PHImageContentMode 타입으로, 이미지를 자르는 모드이다. aspectFill로 설정하여 이미지뷰를 꽉 채울 수 있는 크기로 자를 수 있도록 함
+- 탈출 클로저를 파라미터에 정의하여 image를 메소드 호출 부분에서 처리하도록 함
 
-	```
-	ex) code-squad/swift-photoapp godrm 브랜치 기준 => godrm/swift-photoapp photos-step1
-	```
-	
-9. code review 및 push
-	- pull request를 통해 피드백을 받는다.
-	- 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
+```swift
+private let imageManager: PHCachingImageManager
+...
+func requestImage(at index: Int, _ completion: @escaping (UIImage?) -> (Void)) {
+        imageManager.requestImage(for: photos.at(index),
+                                  targetSize: CGSize(width: ViewConfig.itemWidth, height: ViewConfig.itemHeight),
+                                  contentMode: PHImageContentMode.aspectFill,
+                                  options: nil) { image, _ in completion(image) }
+}
+```
 
-10. 기본(upstream) 브랜치 전환 및 base 저장소 추가하기(최초 시작하기 단계 한번만 하면 됨)
+- 메소드 호출 부분 (ViewController)
 
-	```
-	git checkout 본인_아이디
-	git remote add upstream base_저장소_url
+```swift
+func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.id, for: indexPath) as! PhotoCell
+    photoService.requestImage(at: indexPath.item) { image in
+        cell.photoImageView.image = image
+    }
+	return cell
+}
+```
 
-	ex) git checkout godrm
-	ex) git remote add upstream https://github.com/code-squad/swift-photoapp.git
-	```
+#### PHPhotoLibrary 클래스 사용하여 사진보관함 변경 여부를 관찰
+- Photos 데이터를 다루는 PhotoService 클래스를 정의: Photos는 자료구조로만 사용하기 위함
+- PHPhotoLibraryChangeObserver를 채택하여 `PHPhotoLibrary.shared().register(self)`로 옵저버를 등록하면 사진보관함의 변경 여부를 알 수 있음
+- PHPhotoLibraryChangeObserver의 photoLibraryDidChange() 메소드를 구현하여 사진보관함 변경 시 처리할 로직 추가: 변경사항으로 Photos를 업데이트하고, VC에 노티를 보내어 뷰를 변경할 수 있도록 함
 
-	- 위와 같이 base 저장소 추가한 후 remote 브랜치 목록을 본다.
+```swift
+func photoLibraryDidChange(_ changeInstance: PHChange) {
+    guard let changes = changeInstance.changeDetails(for: self.photos.photoAssets) else { return }
+    self.photos.updateAssets(with: changes.fetchResultAfterChanges)
+    NotificationCenter.default.post(name: .photoLibraryChanged, object: nil,
+                                    userInfo: [NotificationKeys.photoChanges: changes])
+}
+```
 
-	```
-	git remote -v
-	```
+- VC에서 변경사항을 받아 뷰 업데이트: changes가 큰 변화인 경우, 전체 컬렉션뷰 데이터를 재로드. 점진적인 변경사항이라면, 해당 부분만 업데이트.
 
-11. 기본 base 저장소와 sync하기 (PR 보낸 내용을 자신의 기본 저장소와 합치기)
+```swift
+@objc func updateCollectionView(notification: Notification) {
+    guard let userInfo = notification.userInfo,
+        let changes = userInfo[NotificationKeys.photoChanges] as? PHFetchResultChangeDetails<PHAsset> else { return }
+    DispatchQueue.main.async {
+        changes.hasIncrementalChanges ? self.updateChangedItems(changes) : self.collectionView.reloadData()
+    }
+}
+```
 
-	```
-	git fetch upstream
-	git rebase upstream/본인_아이디
-	git push
+- 점진적인 변경사항인 경우: 변경된 인덱스들만 배치 업데이트. 앱이 running 중에 사진첩에 변화가 생기면 바로 반영된다.
+- 이 때, **IndexPath.init(index:)를 사용하면 런타임 에러가 발생한다. 따라서 꼭 section을 지정할 수 있는 IndexPath.init(row:section:) 메소드를 사용한다.**
 
-	ex) 
-	git fetch upstream
-	git rebase upstream/godrm
-	git push
-	```
+```swift
+private func updateChangedItems(_ changes: PHFetchResultChangeDetails<PHAsset>) {
+    self.collectionView.performBatchUpdates({
+        if let insertedIndexes = changes.insertedIndexes, insertedIndexes.count > 0 {
+            self.collectionView.insertItems(at: insertedIndexes.compactMap { IndexPath(row: $0, section: 0) })
+        }
+        if let deletedIndexes = changes.removedIndexes, deletedIndexes.count > 0 {
+            self.collectionView.deleteItems(at: deletedIndexes.compactMap { IndexPath(row: $0, section: 0) })
+        }
+        if let changedIndexes = changes.changedIndexes, changedIndexes.count > 0 {
+            self.collectionView.reloadItems(at: changedIndexes.compactMap { IndexPath(row: $0, section: 0) })
+        }
+        if changes.hasMoves {
+            changes.enumerateMoves {
+                self.collectionView.moveItem(at: IndexPath(row: $0, section: 0), to: IndexPath(row: $1, section: 0))
+            }
+        }
+    })
+}
+```
 
-12. 다음 미션을 해결할 경우 [5단계 브랜치 생성]부터 다시 진행
+### 학습 내용
+>- **[Photos 라이브러리의 구성](https://github.com/undervineg/swift-photoapp/blob/photo-step3/md/Photos_FrameWork.md)**
+>- **[PHImageContentMode와 UIImageView의 ContentMode의 차이](https://github.com/undervineg/swift-photoapp/blob/photo-step3/md/PHImageContentMode_ContentMode.md)**
 
-## 동영상을 통한 코드 리뷰() 를 통해 참고 가능
+2018-04-17 (작업시간: 1일)
 
-- [fork하여 코드 리뷰하기](https://www.youtube.com/watch?v=ZSZoaG0PqLg) 
-- [PR 보내고 다시 PR보낼 때 유의 사항](https://www.youtube.com/watch?v=CbLNbCUsh5c)
-
-## 실습 중 모든 질문은 슬랙 채널에서...
+<br/>
