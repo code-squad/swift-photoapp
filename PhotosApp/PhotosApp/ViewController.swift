@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
+        self.navigationController?.navigationBar.topItem?.title = "Photos"
     }
 
     override func didReceiveMemoryWarning() {
