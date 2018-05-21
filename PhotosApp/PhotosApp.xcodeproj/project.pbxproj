@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E2A8E9720B2B06400E93E51 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8E9620B2B06400E93E51 /* PhotosCollectionViewCell.swift */; };
 		8E77D60F20B2700A0024A90B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E77D60E20B2700A0024A90B /* AppDelegate.swift */; };
 		8E77D61120B2700A0024A90B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E77D61020B2700A0024A90B /* ViewController.swift */; };
 		8E77D61420B2700A0024A90B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D61220B2700A0024A90B /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E2A8E9620B2B06400E93E51 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		8E77D60B20B2700A0024A90B /* PhotosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E77D60E20B2700A0024A90B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E77D61020B2700A0024A90B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				8E77D60E20B2700A0024A90B /* AppDelegate.swift */,
+				8E2A8E9620B2B06400E93E51 /* PhotosCollectionViewCell.swift */,
 				8E77D61020B2700A0024A90B /* ViewController.swift */,
 				8E77D61220B2700A0024A90B /* Main.storyboard */,
 				8E77D61520B2700C0024A90B /* Assets.xcassets */,
@@ -258,6 +261,7 @@
 			files = (
 				8E77D61120B2700A0024A90B /* ViewController.swift in Sources */,
 				8E77D60F20B2700A0024A90B /* AppDelegate.swift in Sources */,
+				8E2A8E9720B2B06400E93E51 /* PhotosCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
