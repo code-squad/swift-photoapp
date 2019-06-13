@@ -7,18 +7,20 @@
 //
 
 import UIKit
+import Photos
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var randomColorCollectionView: UICollectionView!
+    @IBOutlet weak var photosCollectionView: UICollectionView!
     
     private let photos = PhotoAssets()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        randomColorCollectionView.delegate = self
-        randomColorCollectionView.dataSource = self
+        photosCollectionView.delegate = self
+        photosCollectionView.dataSource = self
+        PHPhotoLibrary.shared().register(self)
     }
 }
 
@@ -45,5 +47,11 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: Configuration.Image.width,
                      height: Configuration.Image.height)
+    }
+}
+
+extension ViewController: PHPhotoLibraryChangeObserver {
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        
     }
 }
