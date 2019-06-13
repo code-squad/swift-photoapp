@@ -64,7 +64,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Photos" id="wuS-Dq-4Zz"/>
                     <connections>
-                        <outlet property="randomColorCollectionView" destination="uK3-KJ-r53" id="2pG-OC-Xwt"/>
+                        <outlet property="photosCollectionView" destination="uK3-KJ-r53" id="2pG-OC-Xwt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
