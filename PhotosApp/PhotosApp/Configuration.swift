@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+struct Configuration {
+    struct Image {
+        static let width = 100
+        static let height = 100
+    }
+}
