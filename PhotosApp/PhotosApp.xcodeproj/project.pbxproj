@@ -13,7 +13,6 @@
 		7D2A127322B0F4F10028864E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D2A127222B0F4F10028864E /* Assets.xcassets */; };
 		7D2A127622B0F4F10028864E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D2A127422B0F4F10028864E /* LaunchScreen.storyboard */; };
 		7D2A128222B2454D0028864E /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2A128122B2454D0028864E /* PhotosCollectionViewCell.swift */; };
-		7D2A128622B249E20028864E /* PhotoConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2A128522B249E20028864E /* PhotoConverter.swift */; };
 		7D2A128822B24AAA0028864E /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2A128722B24AAA0028864E /* Configuration.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +25,6 @@
 		7D2A127522B0F4F10028864E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D2A127722B0F4F10028864E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D2A128122B2454D0028864E /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
-		7D2A128522B249E20028864E /* PhotoConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoConverter.swift; sourceTree = "<group>"; };
 		7D2A128722B24AAA0028864E /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,7 +62,6 @@
 				7D2A128722B24AAA0028864E /* Configuration.swift */,
 				7D2A126D22B0F4F00028864E /* ViewController.swift */,
 				7D2A128122B2454D0028864E /* PhotosCollectionViewCell.swift */,
-				7D2A128522B249E20028864E /* PhotoConverter.swift */,
 				7D2A126F22B0F4F00028864E /* Main.storyboard */,
 				7D2A127222B0F4F10028864E /* Assets.xcassets */,
 				7D2A127422B0F4F10028864E /* LaunchScreen.storyboard */,
@@ -147,7 +144,6 @@
 				7D2A126E22B0F4F00028864E /* ViewController.swift in Sources */,
 				7D2A128822B24AAA0028864E /* Configuration.swift in Sources */,
 				7D2A128222B2454D0028864E /* PhotosCollectionViewCell.swift in Sources */,
-				7D2A128622B249E20028864E /* PhotoConverter.swift in Sources */,
 				7D2A126C22B0F4F00028864E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
