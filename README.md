@@ -27,3 +27,5 @@ PHCachingImageManager는 PHImageManager를 상속받은 객체.
 ### 실행화면
 
 <img width="400" src="https://user-images.githubusercontent.com/38850628/59559640-03f3dc80-9044-11e9-810c-3b3f1d2cda60.gif">
+
+<img width="400" src="https://user-images.githubusercontent.com/38850628/59561105-e7ad6b00-9056-11e9-8025-0aa4ed238428.gif">
