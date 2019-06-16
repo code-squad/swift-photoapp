@@ -10,7 +10,7 @@
 
 <img width="400" src="https://user-images.githubusercontent.com/38850628/59339120-8e83c580-8d3e-11e9-8fa5-bf95c83a83a3.gif">
 
-## step01. Photos 라이브러리
+## step02. Photos 라이브러리
 
 ### 배운내용
 
