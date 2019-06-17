@@ -49,6 +49,12 @@ class PhotoManager: NSObject {
                                         contentMode: .aspectFill,
                                         options: nil)
     }
+    
+    func livePhotoImage(for item: Int) -> UIImage? {
+        let asset = photoAssets.object(at: item)
+        guard asset.mediaSubtypes == .photoLive else { return  nil }
+        return PHLivePhotoView.livePhotoBadgeImage(options: .overContent)
+    }
 }
 
 extension PhotoManager: PHPhotoLibraryChangeObserver {
