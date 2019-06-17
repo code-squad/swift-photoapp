@@ -13,6 +13,20 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var livePhotobadgeImageView: UIImageView!
     
+    override var isSelected: Bool {
+        didSet {
+            let transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            self.selectedBackgroundView?.transform = transform
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .red
+        self.selectedBackgroundView = view
+    }
+    
     static let identifier = "photosCollectionViewCell"
     
     override func prepareForReuse() {
