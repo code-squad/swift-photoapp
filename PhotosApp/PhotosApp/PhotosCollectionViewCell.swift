@@ -11,11 +11,13 @@ import UIKit
 class PhotosCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var livePhotobadgeImageView: UIImageView!
     
     static let identifier = "photosCollectionViewCell"
     
     override func prepareForReuse() {
         super.prepareForReuse()
         photoImageView.image = nil
+        livePhotobadgeImageView.image = nil
     }
 }
