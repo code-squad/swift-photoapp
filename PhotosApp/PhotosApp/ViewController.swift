@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var photosCollectionView: UICollectionView!
 
-    let photoManager = PhotoManager()
+    private let photoManager = PhotoManager()
     private var previousPreheatRect = CGRect.zero
     private let thumbnailSize = CGSize(width: Configuration.Image.width,
                                        height: Configuration.Image.height)
@@ -22,7 +22,70 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         photosCollectionView.delegate = self
         photosCollectionView.dataSource = self
-        photoManager.register(observer: self)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(deleteItems),
+                                               name: .photoDidDeleted,
+                                               object: photoManager)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(insertItems),
+                                               name: .photoDidInserted,
+                                               object: photoManager)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(changeItems),
+                                               name: .photoDidChanged,
+                                               object: photoManager)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(moveItems),
+                                               name: .photoDidMoved,
+                                               object: photoManager)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadItem),
+                                               name: .notIncrementalChanges,
+                                               object: photoManager)
+    }
+    
+    @objc func deleteItems(_ noti: Notification) {
+        guard let userInfo = noti.userInfo,
+            let paths = userInfo[UserInfoKey.removedPaths] as? [IndexPath] else { return }
+        DispatchQueue.main.async {
+            self.photosCollectionView.deleteItems(at: paths)
+        }
+    }
+    
+    @objc func insertItems(_ noti: Notification) {
+        guard let userInfo = noti.userInfo,
+            let paths = userInfo[UserInfoKey.insertedPaths] as? [IndexPath] else { return }
+        DispatchQueue.main.async {
+            self.photosCollectionView.insertItems(at: paths)
+        }
+    }
+    
+    @objc func changeItems(_ noti: Notification) {
+        guard let userInfo = noti.userInfo,
+            let paths = userInfo[UserInfoKey.changedPaths] as? [IndexPath] else { return }
+        DispatchQueue.main.async {
+            self.photosCollectionView.reloadItems(at: paths)
+        }
+    }
+    
+    @objc func moveItems(_ noti: Notification) {
+        guard let userInfo = noti.userInfo,
+            let (fromIndex, toIndex) = userInfo[UserInfoKey.movedPaths] as? (Int, Int) else { return }
+        DispatchQueue.main.async {
+            self.photosCollectionView.moveItem(at: IndexPath(item: fromIndex, section: 0),
+                                               to: IndexPath(item: toIndex, section: 0))
+        }
+    }
+    
+    @objc func reloadItem(_ noti: Notification) {
+        DispatchQueue.main.async {
+            self.photosCollectionView.reloadData()
+        }
     }
 }
 
