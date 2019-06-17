@@ -14,14 +14,6 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "photosCollectionViewCell"
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         photoImageView.image = nil
