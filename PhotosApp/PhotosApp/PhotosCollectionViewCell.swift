@@ -15,7 +15,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            let transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            let transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
             self.selectedBackgroundView?.transform = transform
         }
     }
