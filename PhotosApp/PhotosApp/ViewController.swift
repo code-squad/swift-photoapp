@@ -102,7 +102,9 @@ extension ViewController: UICollectionViewDataSource {
             photoCell.photoImageView.image = image
         }
         photoManager.requestImage(with: indexPath.item, completion: resultHandler)
-
+        if let livePhotoImage = photoManager.livePhotoImage(for: indexPath.item) {
+            photoCell.livePhotobadgeImageView.image = livePhotoImage
+        }
         return photoCell
     }
 }
