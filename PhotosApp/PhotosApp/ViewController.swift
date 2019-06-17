@@ -11,7 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var photosCollectionView: UICollectionView!
-
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
     private let photoManager = PhotoManager()
     private var previousPreheatRect = CGRect.zero
     private let thumbnailSize = CGSize(width: Configuration.Image.width,
@@ -22,6 +23,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         photosCollectionView.delegate = self
         photosCollectionView.dataSource = self
+        photosCollectionView.allowsMultipleSelection = true
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(deleteItems),
@@ -153,6 +155,13 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         } else {
             return (new, old)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selectedItems = collectionView.indexPathsForSelectedItems,
+            selectedItems.count >= 3,
+            doneButton.isEnabled == false else { return }
+        doneButton.isEnabled = true
     }
 }
 

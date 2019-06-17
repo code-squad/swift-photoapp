@@ -76,6 +76,7 @@
                         <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="79G-gQ-rfw"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="79G-gQ-rfw" id="xsN-nu-qTG"/>
                         <outlet property="photosCollectionView" destination="uK3-KJ-r53" id="2pG-OC-Xwt"/>
                     </connections>
                 </viewController>
