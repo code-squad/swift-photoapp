@@ -170,6 +170,13 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             doneButton.isEnabled == false else { return }
         doneButton.isEnabled = true
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let selectedItems = collectionView.indexPathsForSelectedItems,
+            selectedItems.count < 3,
+            doneButton.isEnabled == true else { return }
+        doneButton.isEnabled = false
+    }
 }
 
 extension UICollectionView {
