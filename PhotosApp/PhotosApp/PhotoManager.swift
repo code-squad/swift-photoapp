@@ -55,6 +55,25 @@ class PhotoManager: NSObject {
         guard asset.mediaSubtypes == .photoLive else { return  nil }
         return PHLivePhotoView.livePhotoBadgeImage(options: .overContent)
     }
+    
+    func images(for indexPaths: [IndexPath], size: CGSize) -> [UIImage] {
+        var images = [UIImage]()
+        for indexPath in indexPaths {
+            let asset = photoAssets.object(at: indexPath.item)
+            let manager = PHImageManager()
+            let option = PHImageRequestOptions()
+            option.resizeMode = .exact
+            option.deliveryMode = .opportunistic
+            manager.requestImage(for: asset,
+                                 targetSize: size,
+                                 contentMode: .aspectFill,
+                                 options: option) { (image, _) in
+                                    guard let image = image else { return }
+                                    images.append(image)
+            }
+        }
+        return images
+    }
 }
 
 extension PhotoManager: PHPhotoLibraryChangeObserver {
