@@ -29,3 +29,21 @@ PHCachingImageManager는 PHImageManager를 상속받은 객체.
 <img width="400" src="https://user-images.githubusercontent.com/38850628/59559640-03f3dc80-9044-11e9-810c-3b3f1d2cda60.gif">
 
 <img width="400" src="https://user-images.githubusercontent.com/38850628/59561105-e7ad6b00-9056-11e9-8025-0aa4ed238428.gif">
+
+## step03. AVAssetWriter로 동영상 만들기
+
+### 배운내용
+
+#### PHCachingImageManager
+
+PHCachingImageManager는 PHImageManager를 상속받은 객체.
+`startCachingImages`등의 메서드로 preheat 가능
+
+#### PHPhotoLibrary 클래스에 사진보관함이 변경되는지 여부 등록
+
+1. PHPhotoLibraryChangeObserver 채택, 준수
+2. PHPhotoLibrary.shared().register(self)
+
+### 실행화면
+
+<img width="400" src="https://user-images.githubusercontent.com/38850628/59749600-4d4c6200-92b8-11e9-9330-476ab544c428.gif">
