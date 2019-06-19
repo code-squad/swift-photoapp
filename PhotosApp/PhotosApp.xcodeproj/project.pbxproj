@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D14140722B75BC5008B46BA /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14140622B75BC5008B46BA /* PhotoManager.swift */; };
 		7D14140D22B77E9D008B46BA /* UserInfoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14140C22B77E9D008B46BA /* UserInfoKey.swift */; };
+		7D23A3FA22B90DCD00FDEA0A /* VideoMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23A3F922B90DCD00FDEA0A /* VideoMaker.swift */; };
 		7D2A126C22B0F4F00028864E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2A126B22B0F4F00028864E /* AppDelegate.swift */; };
 		7D2A126E22B0F4F00028864E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2A126D22B0F4F00028864E /* ViewController.swift */; };
 		7D2A127122B0F4F00028864E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D2A126F22B0F4F00028864E /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		7D14140622B75BC5008B46BA /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		7D14140C22B77E9D008B46BA /* UserInfoKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoKey.swift; sourceTree = "<group>"; };
+		7D23A3F922B90DCD00FDEA0A /* VideoMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMaker.swift; sourceTree = "<group>"; };
 		7D2A126822B0F4F00028864E /* PhotosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D2A126B22B0F4F00028864E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D2A126D22B0F4F00028864E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				7D2A128722B24AAA0028864E /* Configuration.swift */,
 				7D2A126D22B0F4F00028864E /* ViewController.swift */,
 				7D14140622B75BC5008B46BA /* PhotoManager.swift */,
+				7D23A3F922B90DCD00FDEA0A /* VideoMaker.swift */,
 				7D14140C22B77E9D008B46BA /* UserInfoKey.swift */,
 				7D2A128122B2454D0028864E /* PhotosCollectionViewCell.swift */,
 				7D2A126F22B0F4F00028864E /* Main.storyboard */,
@@ -149,6 +152,7 @@
 			files = (
 				7D2A126E22B0F4F00028864E /* ViewController.swift in Sources */,
 				7D14140D22B77E9D008B46BA /* UserInfoKey.swift in Sources */,
+				7D23A3FA22B90DCD00FDEA0A /* VideoMaker.swift in Sources */,
 				7D2A128822B24AAA0028864E /* Configuration.swift in Sources */,
 				7D2A128222B2454D0028864E /* PhotosCollectionViewCell.swift in Sources */,
 				7D14140722B75BC5008B46BA /* PhotoManager.swift in Sources */,
