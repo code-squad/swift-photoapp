@@ -17,6 +17,7 @@
 		7D2A127622B0F4F10028864E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D2A127422B0F4F10028864E /* LaunchScreen.storyboard */; };
 		7D2A128222B2454D0028864E /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2A128122B2454D0028864E /* PhotosCollectionViewCell.swift */; };
 		7D2A128822B24AAA0028864E /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2A128722B24AAA0028864E /* Configuration.swift */; };
+		7D96285522BB6E1B005CD4FB /* DoodleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D96285422BB6E1B005CD4FB /* DoodleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		7D2A127722B0F4F10028864E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D2A128122B2454D0028864E /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D2A128722B24AAA0028864E /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		7D96285422BB6E1B005CD4FB /* DoodleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				7D14140C22B77E9D008B46BA /* UserInfoKey.swift */,
 				7D2A128122B2454D0028864E /* PhotosCollectionViewCell.swift */,
 				7D2A126F22B0F4F00028864E /* Main.storyboard */,
+				7D96285422BB6E1B005CD4FB /* DoodleViewController.swift */,
 				7D2A127222B0F4F10028864E /* Assets.xcassets */,
 				7D2A127422B0F4F10028864E /* LaunchScreen.storyboard */,
 				7D2A127722B0F4F10028864E /* Info.plist */,
@@ -153,6 +156,7 @@
 				7D2A126E22B0F4F00028864E /* ViewController.swift in Sources */,
 				7D14140D22B77E9D008B46BA /* UserInfoKey.swift in Sources */,
 				7D23A3FA22B90DCD00FDEA0A /* VideoMaker.swift in Sources */,
+				7D96285522BB6E1B005CD4FB /* DoodleViewController.swift in Sources */,
 				7D2A128822B24AAA0028864E /* Configuration.swift in Sources */,
 				7D2A128222B2454D0028864E /* PhotosCollectionViewCell.swift in Sources */,
 				7D14140722B75BC5008B46BA /* PhotoManager.swift in Sources */,

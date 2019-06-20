@@ -101,7 +101,10 @@ class ViewController: UIViewController {
         maker.makeVideo(from: images)
     }
     @IBAction func tapAddButton(_ sender: UIBarButtonItem) {
-        
+        let layout = UICollectionViewFlowLayout()
+        let doodleViewController = DoodleViewController(collectionViewLayout: layout)
+        let navigationController = UINavigationController(rootViewController: doodleViewController)
+        self.present(navigationController, animated: true, completion: nil)
     }
 }
 
