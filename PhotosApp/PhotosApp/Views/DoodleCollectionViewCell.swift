@@ -13,4 +13,13 @@ class DoodleCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "doodleCollectionViewCell"
     
+    func showHandler() -> (Data) -> Void {
+        let show = { (data: Data) -> Void in
+            let image = UIImage(data: data)
+            DispatchQueue.main.async {
+                self.imageView.image = image
+            }
+        }
+        return show
+    }
 }
