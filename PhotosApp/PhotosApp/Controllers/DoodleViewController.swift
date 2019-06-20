@@ -25,10 +25,21 @@ class DoodleViewController: UICollectionViewController {
                                           target: self,
                                           action: .tapCloseButton)
         self.navigationItem.setRightBarButton(closeButton, animated: false)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadCollectionView),
+                                               name: .doodlesDidDownload,
+                                               object: doodleManager)
     }
     
     @objc func tapCloseButton() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func reloadCollectionView(_ noti: Notification) {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 
     // MARK: UICollectionViewDataSource
