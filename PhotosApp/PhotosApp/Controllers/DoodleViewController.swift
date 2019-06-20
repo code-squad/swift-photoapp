@@ -9,12 +9,15 @@
 import UIKit
 
 class DoodleViewController: UICollectionViewController {
+    
+    private let doodleManager = DoodleManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let nib = UINib(nibName: "DoodleCollectionViewCell", bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: DoodleCollectionViewCell.identifier)
+        doodleManager.setUp(with: Configuration.DoodleViewController.doodlesURL)
         self.collectionView.backgroundColor = .darkGray
         self.title = "Doodles"
         let closeButton = UIBarButtonItem(title: "Close",
@@ -31,12 +34,12 @@ class DoodleViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return doodleManager.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
