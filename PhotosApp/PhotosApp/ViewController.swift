@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     private var previousPreheatRect = CGRect.zero
     private let thumbnailSize = CGSize(width: Configuration.Image.width,
                                        height: Configuration.Image.height)
+    private let enabledCount = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -169,14 +170,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedItems = collectionView.indexPathsForSelectedItems,
-            selectedItems.count >= 3,
+            selectedItems.count >= enabledCount,
             doneButton.isEnabled == false else { return }
         doneButton.isEnabled = true
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let selectedItems = collectionView.indexPathsForSelectedItems,
-            selectedItems.count < 3,
+            selectedItems.count < enabledCount,
             doneButton.isEnabled == true else { return }
         doneButton.isEnabled = false
     }
