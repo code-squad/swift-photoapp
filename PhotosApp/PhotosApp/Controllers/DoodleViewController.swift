@@ -30,6 +30,11 @@ class DoodleViewController: UICollectionViewController {
                                                selector: #selector(reloadCollectionView),
                                                name: .doodlesDidDownload,
                                                object: doodleManager)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: .tapCloseButton,
+                                               name: .imageDidSave,
+                                               object: nil)
     }
     
     @objc func tapCloseButton() {
