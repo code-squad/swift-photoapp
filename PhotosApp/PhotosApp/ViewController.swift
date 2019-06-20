@@ -92,8 +92,11 @@ class ViewController: UIViewController {
     
     @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
         guard let selectedIndices = photosCollectionView.indexPathsForSelectedItems else { return }
-        let images = photoManager.images(for: selectedIndices, size: .init(width: 480, height: 640))
-        let maker = VideoMaker(width: 480, height: 640, second: 3)
+        let images = photoManager.images(for: selectedIndices, size: .init(width: Configuration.Video.width,
+                                                                           height: Configuration.Video.height))
+        let maker = VideoMaker(width: Configuration.Video.width,
+                               height: Configuration.Video.height,
+                               second: 3)
         maker.makeVideo(from: images)
     }
 }
