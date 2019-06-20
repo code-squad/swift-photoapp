@@ -96,7 +96,7 @@ class ViewController: UIViewController {
                                                                            height: Configuration.Video.height))
         let maker = VideoMaker(width: Configuration.Video.width,
                                height: Configuration.Video.height,
-                               second: 3)
+                               second: Configuration.Video.second)
         maker.makeVideo(from: images)
     }
 }

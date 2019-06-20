@@ -17,5 +17,6 @@ struct Configuration {
     struct Video {
         static let width = 640
         static let height = 480
+        static let second = 3
     }
 }
