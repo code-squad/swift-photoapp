@@ -20,7 +20,12 @@ class DoodleManager {
         let successHandler = { (data: Data) -> Void in
             guard let doodles = try? JSONDecoder().decode([Doodle].self, from: data) else { return }
             self.doodles.append(contentsOf: doodles)
+            NotificationCenter.default.post(name: .doodlesDidDownload, object: self)
         }
         networkManager.download(with: url, successHandler: successHandler)
     }
+}
+
+extension NSNotification.Name {
+    static let doodlesDidDownload = NSNotification.Name("doodlesDidDownload")
 }
