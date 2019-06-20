@@ -100,6 +100,9 @@ class ViewController: UIViewController {
                                second: Configuration.Video.playTime)
         maker.makeVideo(from: images)
     }
+    @IBAction func tapAddButton(_ sender: UIBarButtonItem) {
+        
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
