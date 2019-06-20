@@ -20,7 +20,8 @@ class DoodleViewController: UICollectionViewController {
 
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
+        self.collectionView.backgroundColor = .darkGray
+        self.title = "Doodles"
         // Do any additional setup after loading the view.
     }
 
