@@ -73,6 +73,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Photos" id="wuS-Dq-4Zz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="YM4-Mp-KnK"/>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="79G-gQ-rfw">
                             <connections>
                                 <action selector="tapDoneButton:" destination="BYZ-38-t0r" id="krL-cI-d29"/>
