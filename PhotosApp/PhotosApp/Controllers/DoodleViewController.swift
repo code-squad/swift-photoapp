@@ -55,9 +55,10 @@ class DoodleViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleCollectionViewCell.identifier, for: indexPath)
+        guard let doodleCell = cell as? DoodleCollectionViewCell else { return cell }
+        doodleManager.perform(with: doodleCell.showHandler(), from: indexPath.item)
     
-    
-        return cell
+        return doodleCell
     }
 
     // MARK: UICollectionViewDelegate
