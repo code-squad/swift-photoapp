@@ -102,6 +102,9 @@ class ViewController: UIViewController {
     }
     @IBAction func tapAddButton(_ sender: UIBarButtonItem) {
         let layout = UICollectionViewFlowLayout()
+        layout.itemSize = .init(width: Configuration.DoodleViewController.Item.width,
+                                height: Configuration.DoodleViewController.Item.height)
+        layout.scrollDirection = .vertical
         let doodleViewController = DoodleViewController(collectionViewLayout: layout)
         let navigationController = UINavigationController(rootViewController: doodleViewController)
         self.present(navigationController, animated: true, completion: nil)
