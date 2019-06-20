@@ -13,6 +13,7 @@ class VideoMaker {
     private let width: Int
     private let height: Int
     private let second: Int
+    private let timescale = 600
     
     init(width: Int, height: Int, second: Int) {
         self.width = width
