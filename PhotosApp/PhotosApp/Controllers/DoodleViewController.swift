@@ -8,18 +8,13 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class DoodleViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        let nib = UINib(nibName: "DoodleCollectionViewCell", bundle: nil)
+        self.collectionView.register(nib, forCellWithReuseIdentifier: DoodleCollectionViewCell.identifier)
         self.collectionView.backgroundColor = .darkGray
         self.title = "Doodles"
         let closeButton = UIBarButtonItem(title: "Close",
@@ -27,40 +22,26 @@ class DoodleViewController: UICollectionViewController {
                                           target: self,
                                           action: .tapCloseButton)
         self.navigationItem.setRightBarButton(closeButton, animated: false)
-        // Do any additional setup after loading the view.
     }
     
     @objc func tapCloseButton() {
         self.dismiss(animated: true, completion: nil)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 0
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleCollectionViewCell.identifier, for: indexPath)
     
-        // Configure the cell
     
         return cell
     }
