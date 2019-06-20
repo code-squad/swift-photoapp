@@ -21,6 +21,8 @@
 		7D96285B22BBB4F4005CD4FB /* DoodleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D96285A22BBB4F4005CD4FB /* DoodleCollectionViewCell.swift */; };
 		7D96285D22BBB584005CD4FB /* DoodleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D96285C22BBB584005CD4FB /* DoodleCollectionViewCell.xib */; };
 		7D96285F22BBB7B1005CD4FB /* Doodle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D96285E22BBB7B1005CD4FB /* Doodle.swift */; };
+		7D96286122BBB84B005CD4FB /* DoodleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D96286022BBB84B005CD4FB /* DoodleManager.swift */; };
+		7D96286522BBBC09005CD4FB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D96286422BBBC09005CD4FB /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		7D96285A22BBB4F4005CD4FB /* DoodleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D96285C22BBB584005CD4FB /* DoodleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoodleCollectionViewCell.xib; sourceTree = "<group>"; };
 		7D96285E22BBB7B1005CD4FB /* Doodle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doodle.swift; sourceTree = "<group>"; };
+		7D96286022BBB84B005CD4FB /* DoodleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleManager.swift; sourceTree = "<group>"; };
+		7D96286422BBBC09005CD4FB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,7 @@
 			children = (
 				7D2A126B22B0F4F00028864E /* AppDelegate.swift */,
 				7D23A3F922B90DCD00FDEA0A /* VideoMaker.swift */,
+				7D96286422BBBC09005CD4FB /* NetworkManager.swift */,
 				7D96285722BB728D005CD4FB /* Constants */,
 				7D96285622BB71EF005CD4FB /* Controllers */,
 				7D96285922BB72B4005CD4FB /* Models */,
@@ -118,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				7D14140622B75BC5008B46BA /* PhotoManager.swift */,
+				7D96286022BBB84B005CD4FB /* DoodleManager.swift */,
 				7D96285E22BBB7B1005CD4FB /* Doodle.swift */,
 			);
 			path = Models;
@@ -195,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D96286522BBBC09005CD4FB /* NetworkManager.swift in Sources */,
 				7D2A126E22B0F4F00028864E /* ViewController.swift in Sources */,
 				7D14140D22B77E9D008B46BA /* UserInfoKey.swift in Sources */,
 				7D96285F22BBB7B1005CD4FB /* Doodle.swift in Sources */,
@@ -203,6 +210,7 @@
 				7D2A128822B24AAA0028864E /* Configuration.swift in Sources */,
 				7D2A128222B2454D0028864E /* PhotosCollectionViewCell.swift in Sources */,
 				7D14140722B75BC5008B46BA /* PhotoManager.swift in Sources */,
+				7D96286122BBB84B005CD4FB /* DoodleManager.swift in Sources */,
 				7D96285B22BBB4F4005CD4FB /* DoodleCollectionViewCell.swift in Sources */,
 				7D2A126C22B0F4F00028864E /* AppDelegate.swift in Sources */,
 			);
