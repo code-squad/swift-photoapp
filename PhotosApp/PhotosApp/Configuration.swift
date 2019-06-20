@@ -19,4 +19,11 @@ struct Configuration {
         static let height = 480
         static let playTime = 3
     }
+    
+    struct DoodleViewController {
+        struct Item {
+            static let width = 110
+            static let height = 50
+        }
+    }
 }
