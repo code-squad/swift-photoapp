@@ -67,19 +67,51 @@
 			isa = PBXGroup;
 			children = (
 				7D2A126B22B0F4F00028864E /* AppDelegate.swift */,
-				7D2A128722B24AAA0028864E /* Configuration.swift */,
-				7D2A126D22B0F4F00028864E /* ViewController.swift */,
-				7D14140622B75BC5008B46BA /* PhotoManager.swift */,
 				7D23A3F922B90DCD00FDEA0A /* VideoMaker.swift */,
-				7D14140C22B77E9D008B46BA /* UserInfoKey.swift */,
-				7D2A128122B2454D0028864E /* PhotosCollectionViewCell.swift */,
+				7D96285722BB728D005CD4FB /* Constants */,
+				7D96285622BB71EF005CD4FB /* Controllers */,
+				7D96285922BB72B4005CD4FB /* Models */,
+				7D96285822BB72A2005CD4FB /* Views */,
 				7D2A126F22B0F4F00028864E /* Main.storyboard */,
-				7D96285422BB6E1B005CD4FB /* DoodleViewController.swift */,
 				7D2A127222B0F4F10028864E /* Assets.xcassets */,
 				7D2A127422B0F4F10028864E /* LaunchScreen.storyboard */,
 				7D2A127722B0F4F10028864E /* Info.plist */,
 			);
 			path = PhotosApp;
+			sourceTree = "<group>";
+		};
+		7D96285622BB71EF005CD4FB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7D2A126D22B0F4F00028864E /* ViewController.swift */,
+				7D96285422BB6E1B005CD4FB /* DoodleViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7D96285722BB728D005CD4FB /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				7D2A128722B24AAA0028864E /* Configuration.swift */,
+				7D14140C22B77E9D008B46BA /* UserInfoKey.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		7D96285822BB72A2005CD4FB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7D2A128122B2454D0028864E /* PhotosCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7D96285922BB72B4005CD4FB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7D14140622B75BC5008B46BA /* PhotoManager.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
