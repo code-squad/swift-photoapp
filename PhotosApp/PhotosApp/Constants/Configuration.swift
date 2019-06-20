@@ -25,5 +25,6 @@ struct Configuration {
             static let width = 110
             static let height = 50
         }
+        static let doodlesURL = "http://101.101.164.187/doodle.php"
     }
 }
