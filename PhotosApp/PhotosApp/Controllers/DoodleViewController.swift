@@ -11,6 +11,18 @@ import UIKit
 class DoodleViewController: UICollectionViewController {
     
     private let doodleManager = DoodleManager()
+    private var longPressedImage: UIImage?
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if action == .saveMenuItemDidTap {
+            return true
+        }
+        return false
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +42,6 @@ class DoodleViewController: UICollectionViewController {
                                                selector: #selector(reloadCollectionView),
                                                name: .doodlesDidDownload,
                                                object: doodleManager)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: .tapCloseButton,
-                                               name: .imageDidSave,
-                                               object: nil)
     }
     
     @objc func tapCloseButton() {
@@ -45,6 +52,24 @@ class DoodleViewController: UICollectionViewController {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+    }
+    
+    @objc func targetDidLongPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            guard let cell = sender.view as? DoodleCollectionViewCell else { return }
+            longPressedImage = cell.imageView.image
+            let menuItem = UIMenuItem(title: "Save", action: .saveMenuItemDidTap)
+            UIMenuController.shared.menuItems = [menuItem]
+            UIMenuController.shared.setTargetRect(cell.frame,
+                                                  in: collectionView)
+            UIMenuController.shared.setMenuVisible(true, animated: true)
+        }
+    }
+    
+    @objc func saveMenuItemDidTap() {
+        guard let image = longPressedImage else { return }
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
     // MARK: UICollectionViewDataSource
@@ -62,43 +87,15 @@ class DoodleViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleCollectionViewCell.identifier, for: indexPath)
         guard let doodleCell = cell as? DoodleCollectionViewCell else { return cell }
         doodleManager.perform(with: doodleCell.showHandler(), from: indexPath.item)
-    
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self,
+                                                                      action: .targetDidLongPress)
+        doodleCell.addGestureRecognizer(longPressGestureRecognizer)
         return doodleCell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }
 
 extension Selector {
     static let tapCloseButton = #selector(DoodleViewController.tapCloseButton)
+    static let targetDidLongPress = #selector(DoodleViewController.targetDidLongPress)
+    static let saveMenuItemDidTap = #selector(DoodleViewController.saveMenuItemDidTap)
 }
