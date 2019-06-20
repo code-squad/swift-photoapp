@@ -24,6 +24,13 @@ class DoodleManager {
         }
         networkManager.download(with: url, successHandler: successHandler)
     }
+    
+    func perform(with dataHandler: @escaping (Data) -> Void, from index: Int) {
+        let networkManager = NetworkManager()
+        let doodle = doodles[index]
+        guard let url = URL(string: doodle.image) else { return }
+        networkManager.download(with: url, successHandler: dataHandler)
+    }
 }
 
 extension NSNotification.Name {
