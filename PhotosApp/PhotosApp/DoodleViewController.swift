@@ -22,7 +22,16 @@ class DoodleViewController: UICollectionViewController {
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView.backgroundColor = .darkGray
         self.title = "Doodles"
+        let closeButton = UIBarButtonItem(title: "Close",
+                                          style: .done,
+                                          target: self,
+                                          action: .tapCloseButton)
+        self.navigationItem.setRightBarButton(closeButton, animated: false)
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func tapCloseButton() {
+        self.dismiss(animated: true, completion: nil)
     }
 
     /*
@@ -87,4 +96,8 @@ class DoodleViewController: UICollectionViewController {
     }
     */
 
+}
+
+extension Selector {
+    static let tapCloseButton = #selector(DoodleViewController.tapCloseButton)
 }
