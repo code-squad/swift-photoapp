@@ -9,7 +9,8 @@
 import Foundation
 
 class NetworkManager {
-    private let downloadSessions = Array(repeating: URLSession(configuration: .default), count: 10)
+    private let downloadSessions = [URLSession(configuration: .default),
+                                    URLSession(configuration: .default),]
     
     func download(with url: URL, successHandler: @escaping (Data) -> Void) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
