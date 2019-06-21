@@ -26,10 +26,11 @@ class DoodleManager {
     }
     
     func perform(with dataHandler: @escaping (Data) -> Void, from index: Int) {
-        let networkManager = NetworkManager()
-        let doodle = doodles[index]
-        guard let url = URL(string: doodle.image) else { return }
-        networkManager.download(with: url, successHandler: dataHandler)
+        DispatchQueue.global(qos: .background).async {
+            guard let url = URL(string: self.doodles[index].image) else { return }
+            let networkManaber = NetworkManager()
+            networkManaber.download(with: url, successHandler: dataHandler)
+        }
     }
 }
 
