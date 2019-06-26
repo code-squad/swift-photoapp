@@ -10,6 +10,7 @@ import Foundation
 
 class DoodleManager {
     private var doodles = [Doodle]()
+    private let networkManager = NetworkManager()
     var count: Int {
         return doodles.count
     }
@@ -26,11 +27,8 @@ class DoodleManager {
     }
     
     func perform(with dataHandler: @escaping (Data) -> Void, from index: Int) {
-        DispatchQueue.global(qos: .background).async {
-            guard let url = URL(string: self.doodles[index].image) else { return }
-            let networkManaber = NetworkManager()
-            networkManaber.download(with: url, for: index, successHandler: dataHandler)
-        }
+        guard let url = URL(string: self.doodles[index].image) else { return }
+        networkManager.download(with: url, successHandler: dataHandler)
     }
 }
 
