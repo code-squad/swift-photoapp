@@ -9,25 +9,20 @@
 import Foundation
 
 class NetworkManager {
-    private let downloadSessions = [URLSession(configuration: .default),
-                                    URLSession(configuration: .default),]
+    private let session: URLSession
+    var time = CFAbsoluteTime()
     
-    func download(with url: URL, successHandler: @escaping (Data) -> Void) {
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil {
-                return
-            }
-            
-            guard let data = data,
-                let response = response as? HTTPURLResponse,
-                200...299 ~= response.statusCode else { return }
-            
-            successHandler(data)
-        }.resume()
+    init() {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        self.session = URLSession(configuration: .default,
+                                  delegate: nil,
+                                  delegateQueue: queue)
     }
     
-    func download(with url: URL, for index: Int , successHandler: @escaping (Data) -> Void) {
-        downloadSessions[index % downloadSessions.count].dataTask(with: url) { (data, response, error) in
+    func download(with url: URL, successHandler: @escaping (Data) -> Void) {
+        let start = CFAbsoluteTimeGetCurrent()
+        session.dataTask(with: url) { (data, response, error) in
             if error != nil {
                 return
             }
@@ -37,6 +32,9 @@ class NetworkManager {
                 200...299 ~= response.statusCode else { return }
             
             successHandler(data)
+            let end = CFAbsoluteTimeGetCurrent() - start
+            self.time += end
+            print(self.time)
         }.resume()
     }
 }
