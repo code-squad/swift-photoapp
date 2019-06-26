@@ -9,19 +9,9 @@
 import Foundation
 
 class NetworkManager {
-    private let session: URLSession
-    var time = CFAbsoluteTime()
-    
-    init() {
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        self.session = URLSession(configuration: .default,
-                                  delegate: nil,
-                                  delegateQueue: queue)
-    }
+    private let session = URLSession(configuration: .default)
     
     func download(with url: URL, successHandler: @escaping (Data) -> Void) {
-        let start = CFAbsoluteTimeGetCurrent()
         session.dataTask(with: url) { (data, response, error) in
             if error != nil {
                 return
@@ -32,9 +22,6 @@ class NetworkManager {
                 200...299 ~= response.statusCode else { return }
             
             successHandler(data)
-            let end = CFAbsoluteTimeGetCurrent() - start
-            self.time += end
-            print(self.time)
         }.resume()
     }
 }
