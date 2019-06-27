@@ -78,9 +78,9 @@
                                 <action selector="tapAddButton:" destination="BYZ-38-t0r" id="LWu-vZ-5cn"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="79G-gQ-rfw">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="edit" id="79G-gQ-rfw">
                             <connections>
-                                <action selector="tapDoneButton:" destination="BYZ-38-t0r" id="krL-cI-d29"/>
+                                <action selector="tapEditButton:" destination="BYZ-38-t0r" id="krL-cI-d29"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
