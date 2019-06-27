@@ -27,4 +27,11 @@ struct Configuration {
         }
         static let doodlesURL = "http://101.101.164.187/doodle.php"
     }
+    
+    struct ActionSheet {
+        struct Title {
+            static let makeVideo = "동영상 만들기"
+            static let cancel = "취소"
+        }
+    }
 }
