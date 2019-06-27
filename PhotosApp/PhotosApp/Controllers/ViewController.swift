@@ -17,7 +17,12 @@ class ViewController: UIViewController {
     private var previousPreheatRect = CGRect.zero
     private let thumbnailSize = CGSize(width: Configuration.Image.width,
                                        height: Configuration.Image.height)
-    private let enabledCount = 3
+    
+    private var makeVideoActionIsAvailable: Bool {
+        guard let selectedIndexPaths = photosCollectionView.indexPathsForSelectedItems else { return false }
+        let enabledCount = 3
+        return enabledCount <= selectedIndexPaths.count
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,15 +96,21 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
-        guard let selectedIndices = photosCollectionView.indexPathsForSelectedItems else { return }
-        let images = photoManager.images(for: selectedIndices, size: .init(width: Configuration.Video.width,
-                                                                           height: Configuration.Video.height))
-        let maker = VideoMaker(width: Configuration.Video.width,
-                               height: Configuration.Video.height,
-                               second: Configuration.Video.playTime)
-        maker.makeVideo(from: images)
+    @IBAction func tapEditButton(_ sender: UIBarButtonItem) {
+        let menu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let makeVideoAction = UIAlertAction(title: Configuration.ActionSheet.Title.makeVideo,
+                                            style: .default) { (action) -> Void in
+                                        self.makeVideo()
+        }
+        makeVideoAction.isEnabled = makeVideoActionIsAvailable
+        let cancelAction = UIAlertAction(title: Configuration.ActionSheet.Title.cancel,
+                                         style: .cancel,
+                                         handler: nil)
+        menu.addAction(makeVideoAction)
+        menu.addAction(cancelAction)
+        self.present(menu, animated: true, completion: nil)
     }
+    
     @IBAction func tapAddButton(_ sender: UIBarButtonItem) {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = .init(width: Configuration.DoodleViewController.Item.width,
@@ -108,6 +119,16 @@ class ViewController: UIViewController {
         let doodleViewController = DoodleViewController(collectionViewLayout: layout)
         let navigationController = UINavigationController(rootViewController: doodleViewController)
         self.present(navigationController, animated: true, completion: nil)
+    }
+    
+    private func makeVideo() {
+        guard let selectedIndices = photosCollectionView.indexPathsForSelectedItems else { return }
+        let images = photoManager.images(for: selectedIndices, size: .init(width: Configuration.Video.width,
+                                                                           height: Configuration.Video.height))
+        let maker = VideoMaker(width: Configuration.Video.width,
+                               height: Configuration.Video.height,
+                               second: Configuration.Video.playTime)
+        maker.makeVideo(from: images)
     }
 }
 
@@ -175,20 +196,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         } else {
             return (new, old)
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let selectedItems = collectionView.indexPathsForSelectedItems,
-            selectedItems.count >= enabledCount,
-            doneButton.isEnabled == false else { return }
-        doneButton.isEnabled = true
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let selectedItems = collectionView.indexPathsForSelectedItems,
-            selectedItems.count < enabledCount,
-            doneButton.isEnabled == true else { return }
-        doneButton.isEnabled = false
     }
 }
 
