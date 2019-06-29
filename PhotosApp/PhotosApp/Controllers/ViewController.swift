@@ -139,7 +139,7 @@ class ViewController: UIViewController {
     
     private func applyFilter() {
         guard let selectedIndices = photosCollectionView.indexPathsForSelectedItems else { return }
-        photoManager.applyfilter(to: selectedIndices)
+        photoManager.applyFilter(to: selectedIndices)
     }
 }
 
