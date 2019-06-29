@@ -155,6 +155,20 @@ class PhotoManager: NSObject {
         export.videoComposition = composition
         export.exportAsynchronously(completionHandler: completion)
     }
+    
+    func revert(by indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            revert(by: indexPath)
+        }
+    }
+    
+    private func revert(by indexPath: IndexPath) {
+        let asset = photoAssets.object(at: indexPath.item)
+        PHPhotoLibrary.shared().performChanges({
+            let request = PHAssetChangeRequest(for: asset)
+            request.revertAssetContentToOriginal()
+        })
+    }
 }
 
 extension PhotoManager: PHPhotoLibraryChangeObserver {
