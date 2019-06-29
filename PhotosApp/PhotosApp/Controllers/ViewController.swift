@@ -98,16 +98,22 @@ class ViewController: UIViewController {
     
     @IBAction func tapEditButton(_ sender: UIBarButtonItem) {
         let menu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let makeVideoAction = UIAlertAction(title: Configuration.ActionSheet.Title.makeVideo,
-                                            style: .default) { (action) -> Void in
-                                        self.makeVideo()
-        }
-        makeVideoAction.isEnabled = makeVideoActionIsAvailable
         let cancelAction = UIAlertAction(title: Configuration.ActionSheet.Title.cancel,
                                          style: .cancel,
                                          handler: nil)
-        menu.addAction(makeVideoAction)
+        let makeVideoAction = UIAlertAction(title: Configuration.ActionSheet.Title.makeVideo,
+                                            style: .default) { (action) -> Void in
+                                                self.makeVideo()
+        }
+        makeVideoAction.isEnabled = makeVideoActionIsAvailable
+        let applyFilterAction = UIAlertAction(title: Configuration.ActionSheet.Title.applyFilter,
+                                              style: .default) { (action) -> Void in
+                                                self.applyFilter()
+        }
         menu.addAction(cancelAction)
+        menu.addAction(makeVideoAction)
+        menu.addAction(applyFilterAction)
+        
         self.present(menu, animated: true, completion: nil)
     }
     
@@ -129,6 +135,11 @@ class ViewController: UIViewController {
                                height: Configuration.Video.height,
                                second: Configuration.Video.playTime)
         maker.makeVideo(from: images)
+    }
+    
+    private func applyFilter() {
+        guard let selectedIndices = photosCollectionView.indexPathsForSelectedItems else { return }
+        photoManager.applyfilter(to: selectedIndices)
     }
 }
 
