@@ -32,6 +32,7 @@ struct Configuration {
         struct Title {
             static let makeVideo = "동영상 만들기"
             static let cancel = "취소"
+            static let applyFilter = "효과주기"
         }
     }
 }
