@@ -15,6 +15,9 @@ class PhotoManager: NSObject {
     private let imageManager = PHCachingImageManager()
     private let thumbnailSize = CGSize(width: Configuration.Image.width,
                                        height: Configuration.Image.height)
+    private let ciContext = CIContext()
+    private let formatIdentifier = Bundle.main.bundleIdentifier!
+    private let formatVersion = "1.0"
     
     override init() {
         super.init()
@@ -73,6 +76,84 @@ class PhotoManager: NSObject {
             }
         }
         return images
+    }
+    
+    func applyFilter(to indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            applyFilter(to: indexPath)
+        }
+    }
+    
+    private func applyFilter(to indexPath: IndexPath) {
+        let asset = photoAssets.object(at: indexPath.item)
+        asset.requestContentEditingInput(with: nil) { (input, _) in
+            guard let input = input else { return }
+            let filterName = "CIBloom"
+            DispatchQueue.global().async {
+                guard let data = filterName.data(using: .utf8) else { return }
+                let adjustmentData = PHAdjustmentData(formatIdentifier: self.formatIdentifier,
+                                                      formatVersion: self.formatVersion,
+                                                      data: data)
+                let output = PHContentEditingOutput(contentEditingInput: input)
+                output.adjustmentData = adjustmentData
+
+                let completion = { () -> Void in
+                    PHPhotoLibrary.shared().performChanges({
+                        let request = PHAssetChangeRequest(for: asset)
+                        request.contentEditingOutput = output
+                    })
+                }
+                
+                if asset.mediaSubtypes.contains(.photoLive) {
+                    self.applyLivePhotoFilter(filterName, input: input, output: output, completion: completion)
+                } else if asset.mediaType == .image {
+                    self.applyPhotoFilter(filterName, input: input, output: output, completion: completion)
+                } else if asset.mediaType == .video {
+                    self.applyVideoFilter(filterName, input: input, output: output, completion: completion)
+                }
+            }
+        }
+    }
+    
+    private func applyPhotoFilter(_ filterName: String, input: PHContentEditingInput, output: PHContentEditingOutput, completion: () -> Void) {
+        guard let url = input.fullSizeImageURL,
+            let inputImage = CIImage(contentsOf: url) else { return }
+        let outputImage = inputImage.applyingFilter(filterName, parameters: [:])
+        guard let colorSpace = inputImage.colorSpace else { return }
+        try? self.ciContext.writeJPEGRepresentation(of: outputImage,
+                                                    to: output.renderedContentURL,
+                                                    colorSpace: colorSpace,
+                                                    options: [:])
+        completion()
+    }
+    
+    private func applyLivePhotoFilter(_ filterName: String, input: PHContentEditingInput, output: PHContentEditingOutput, completion: @escaping () -> Void) {
+        guard let livePhotoContext = PHLivePhotoEditingContext(livePhotoEditingInput: input)
+            else { return }
+        livePhotoContext.frameProcessor = { frame, _ in
+            return frame.image.applyingFilter(filterName, parameters: [:])
+        }
+        livePhotoContext.saveLivePhoto(to: output) { success, error in
+            if success {
+                completion()
+            }
+        }
+    }
+    
+    private func applyVideoFilter(_ filterName: String, input: PHContentEditingInput, output: PHContentEditingOutput, completion: @escaping () -> Void) {
+        guard let avAsset = input.audiovisualAsset else { return }
+        
+        let composition = AVVideoComposition(asset: avAsset) { (request) in
+            let filtered = request.sourceImage.applyingFilter(filterName, parameters: [:])
+            request.finish(with: filtered, context: nil)
+        }
+
+        guard let export = AVAssetExportSession(asset: avAsset,
+                                                presetName: AVAssetExportPresetHighestQuality) else { return }
+        export.outputFileType = AVFileType.mov
+        export.outputURL = output.renderedContentURL
+        export.videoComposition = composition
+        export.exportAsynchronously(completionHandler: completion)
     }
 }
 
