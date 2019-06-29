@@ -110,9 +110,14 @@ class ViewController: UIViewController {
                                               style: .default) { (action) -> Void in
                                                 self.applyFilter()
         }
+        let revertAction = UIAlertAction(title: Configuration.ActionSheet.Title.revert,
+                                         style: .default) { (action) in
+                                            self.revert()
+        }
         menu.addAction(cancelAction)
         menu.addAction(makeVideoAction)
         menu.addAction(applyFilterAction)
+        menu.addAction(revertAction)
         
         self.present(menu, animated: true, completion: nil)
     }
@@ -140,6 +145,11 @@ class ViewController: UIViewController {
     private func applyFilter() {
         guard let selectedIndices = photosCollectionView.indexPathsForSelectedItems else { return }
         photoManager.applyFilter(to: selectedIndices)
+    }
+    
+    private func revert() {
+        guard let selectedIndices = photosCollectionView.indexPathsForSelectedItems else { return }
+        photoManager.revert(by: selectedIndices)
     }
 }
 
