@@ -92,7 +92,11 @@ UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
 
 ### 배운내용
 
-#### 
+#### 필터 적용 여부 파악하는 법을 배움
+
+```swift
+PHAssetResource.assetResources(for: asset).filter { $0.type == .adjustmentData }
+```
 
 ### 실행화면
 
