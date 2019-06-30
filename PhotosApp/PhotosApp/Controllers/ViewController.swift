@@ -23,6 +23,13 @@ class ViewController: UIViewController {
         let enabledCount = 3
         return enabledCount <= selectedIndexPaths.count
     }
+    private var revertActionIsAvailable: Bool {
+        guard let selectedIndexPaths = photosCollectionView.indexPathsForSelectedItems,
+            selectedIndexPaths.count == 1,
+            let indexPath = selectedIndexPaths.first,
+            photoManager.isModified(indexPath) else { return false }
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,6 +121,8 @@ class ViewController: UIViewController {
                                          style: .default) { (action) in
                                             self.revert()
         }
+        revertAction.isEnabled = revertActionIsAvailable
+        
         menu.addAction(cancelAction)
         menu.addAction(makeVideoAction)
         menu.addAction(applyFilterAction)
