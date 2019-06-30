@@ -87,3 +87,17 @@ UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
 ### 실행화면
 
 <img width="400" src="https://user-images.githubusercontent.com/38850628/59860900-c3d18880-93ba-11e9-96c8-e2a701d5f083.gif">
+
+## step05. Core Image 필더 적용하기
+
+### 배운내용
+
+#### 
+
+### 실행화면
+
+<img width="400" src="https://user-images.githubusercontent.com/38850628/60394553-2e27bd00-9b61-11e9-8add-038dd8717689.gif">
+
+<img width="400" src="https://user-images.githubusercontent.com/38850628/60394554-2e27bd00-9b61-11e9-822b-f4b292577fb2.gif">
+
+<img width="400" src="https://user-images.githubusercontent.com/38850628/60394552-2d8f2680-9b61-11e9-83be-f0b7b37b2277.gif">
