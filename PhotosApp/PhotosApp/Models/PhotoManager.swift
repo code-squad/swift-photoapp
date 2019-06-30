@@ -169,6 +169,12 @@ class PhotoManager: NSObject {
             request.revertAssetContentToOriginal()
         })
     }
+    
+    func isModified(_ indexPath: IndexPath) -> Bool {
+        let asset = photoAssets.object(at: indexPath.item)
+        let resources = PHAssetResource.assetResources(for: asset).filter { $0.type == .adjustmentData }
+        return resources.count > 0
+    }
 }
 
 extension PhotoManager: PHPhotoLibraryChangeObserver {
