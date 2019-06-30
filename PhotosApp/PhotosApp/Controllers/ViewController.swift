@@ -106,21 +106,15 @@ class ViewController: UIViewController {
     @IBAction func tapEditButton(_ sender: UIBarButtonItem) {
         let menu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: Configuration.ActionSheet.Title.cancel,
-                                         style: .cancel,
-                                         handler: nil)
+                                         style: .cancel)
         let makeVideoAction = UIAlertAction(title: Configuration.ActionSheet.Title.makeVideo,
-                                            style: .default) { (action) -> Void in
-                                                self.makeVideo()
-        }
-        makeVideoAction.isEnabled = makeVideoActionIsAvailable
+                                            style: .default) { _ in self.makeVideo() }
         let applyFilterAction = UIAlertAction(title: Configuration.ActionSheet.Title.applyFilter,
-                                              style: .default) { (action) -> Void in
-                                                self.applyFilter()
-        }
+                                              style: .default) { _ in self.applyFilter() }
         let revertAction = UIAlertAction(title: Configuration.ActionSheet.Title.revert,
-                                         style: .default) { (action) in
-                                            self.revert()
-        }
+                                         style: .default) { _ in self.revert() }
+        
+        makeVideoAction.isEnabled = makeVideoActionIsAvailable
         revertAction.isEnabled = revertActionIsAvailable
         
         menu.addAction(cancelAction)

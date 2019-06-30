@@ -122,21 +122,18 @@ class PhotoManager: NSObject {
         guard let colorSpace = inputImage.colorSpace else { return }
         try? self.ciContext.writeJPEGRepresentation(of: outputImage,
                                                     to: output.renderedContentURL,
-                                                    colorSpace: colorSpace,
-                                                    options: [:])
+                                                    colorSpace: colorSpace)
         completion()
     }
     
     private func applyLivePhotoFilter(_ filterName: String, input: PHContentEditingInput, output: PHContentEditingOutput, completion: @escaping () -> Void) {
-        guard let livePhotoContext = PHLivePhotoEditingContext(livePhotoEditingInput: input)
-            else { return }
+        guard let livePhotoContext = PHLivePhotoEditingContext(livePhotoEditingInput: input) else { return }
         livePhotoContext.frameProcessor = { frame, _ in
             return frame.image.applyingFilter(filterName, parameters: [:])
         }
         livePhotoContext.saveLivePhoto(to: output) { success, error in
-            if success {
-                completion()
-            }
+            guard success else { return }
+            completion()
         }
     }
     
