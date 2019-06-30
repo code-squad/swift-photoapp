@@ -88,7 +88,7 @@ UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
 
 <img width="400" src="https://user-images.githubusercontent.com/38850628/59860900-c3d18880-93ba-11e9-96c8-e2a701d5f083.gif">
 
-## step05. Core Image 필더 적용하기
+## step05. Core Image 필터 적용하기
 
 ### 배운내용
 
