@@ -1,102 +1,40 @@
-# 진행 방법
+## step1
 
-- [사진 iOS 앱 요구사항](https://nextstep.camp/courses/-Kv6Po9QBOUw9ZzXzI5m/-KvWBIIMwwUa-Hnk4gYh/lessons)을 파악한다.
-- 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 코드 리뷰 요청을 한다.
-- 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
-- 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
+#### collectionview 와 tableview의 차이점
 
-# 코드 리뷰 과정
-> 저장소 브랜치에 자신의 github 아이디에 해당하는 브랜치가 존재해야 한다.
->
-> 자신의 github 아이디에 해당하는 브랜치가 있는지 확인한다.
+tableview는 단일 열에 배열된 행을 사용해 데이터를 표시하는 뷰이고,
 
-1. 자신의 github 아이디에 해당하는 브랜치가 없는 경우 브랜치 생성 요청 채널을 통해 브랜치 생성을 요청한다.
-프로젝트를 자신의 계정으로 fork한다. 저장소 우측 상단의 fork 버튼을 활용한다.
+수직 스크롤만 가능하다. 
 
-2. fork한 프로젝트를 자신의 컴퓨터로 clone한다.
-```
-git clone https://github.com/{본인_아이디}/{저장소 아이디}
-ex) https://github.com/godrm/swift-photoapp
-```
+섹션으로 셀을 그룹화 할수 있고, 각 섹션은 헤더와 푸터를 가질수 있다.
 
-3. clone한 프로젝트 이동
-```
-cd {저장소 아이디}
-ex) cd swift-photoapp
-```
+collectionview는 tableview와 비슷하지만
 
-4. 본인 아이디로 브랜치를 만들기 위한 checkout
-```
-git checkout -t origin/본인_아이디
-ex) git checkout -t origin/godrm
-```
+구분하는 가장 큰 특징은 `레이아웃`이다.
 
-5. 기능 구현을 위한 브랜치 생성 (연속번호를 붙여나간다)
-```
-git checkout -b 브랜치이름
-ex) git checkout -b photos-step1
-```
+collectionview는 여러개의 열과 행으로 데이터를 표현할수 있다. 
 
-6. commit
-```
-git status //확인
-git rm 파일명 //삭제된 파일
-git add 파일명(or * 모두) // 추가/변경 파일
-git commit -m "메세지" // 커밋
-```
+그리드 형태로 아이템을 보여줄때 많이 사용되고 
 
-7. 본인 원격 저장소에 올리기
-```
-git push --set-upstream origin 브랜치이름
-ex) git push --set-upstream origin photos-step1
-```
+수직스크롤뿐만 아니라 수평 스크롤도 가능하다.
 
-8. pull request
-	- pull request는 github 서비스에서 진행할 수 있다.
-	- pull request는 original 저장소의 브랜치(자신의 github 아이디)와 앞 단계에서 생성한 브랜치 이름을 기준으로 한다.
+collectionview는 다양한 목록으로 커스텀하게 만들수 있는 장점이 있다.
 
-	```
-	ex) code-squad/swift-photoapp godrm 브랜치 기준 => godrm/swift-photoapp photos-step1
-	```
-	
-9. code review 및 push
-	- pull request를 통해 피드백을 받는다.
-	- 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
+구현하는 뷰에따라 간단하고 보편적인 목록이라면 테이블뷰를 선택하면 좋다.
 
-10. 기본(upstream) 브랜치 전환 및 base 저장소 추가하기(최초 시작하기 단계 한번만 하면 됨)
 
-	```
-	git checkout 본인_아이디
-	git remote add upstream base_저장소_url
 
-	ex) git checkout godrm
-	ex) git remote add upstream https://github.com/code-squad/swift-photoapp.git
-	```
 
-	- 위와 같이 base 저장소 추가한 후 remote 브랜치 목록을 본다.
 
-	```
-	git remote -v
-	```
 
-11. 기본 base 저장소와 sync하기 (PR 보낸 내용을 자신의 기본 저장소와 합치기)
 
-	```
-	git fetch upstream
-	git rebase upstream/본인_아이디
-	git push
 
-	ex) 
-	git fetch upstream
-	git rebase upstream/godrm
-	git push
-	```
 
-12. 다음 미션을 해결할 경우 [5단계 브랜치 생성]부터 다시 진행
+<br/>
 
-## 동영상을 통한 코드 리뷰() 를 통해 참고 가능
+<br/>
 
-- [fork하여 코드 리뷰하기](https://www.youtube.com/watch?v=ZSZoaG0PqLg) 
-- [PR 보내고 다시 PR보낼 때 유의 사항](https://www.youtube.com/watch?v=CbLNbCUsh5c)
+##### 참고링크
 
-## 실습 중 모든 질문은 슬랙 채널에서...
+[테이블이냐, 컬렉션이냐, 그것이 문제로다!(KOR) - 브랜디 랩스](http://labs.brandi.co.kr/2018/05/02/kimjh.html)
+
