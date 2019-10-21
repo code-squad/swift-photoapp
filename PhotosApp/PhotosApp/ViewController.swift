@@ -30,8 +30,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosCell", for: indexPath) as? PhotosCollectionViewCell {
+            cell.backgroundColor = .getRandomColor()
+            return cell
+        }
+        return UICollectionViewCell()
     }
-    
     
 }
